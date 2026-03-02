@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Coffee Shop Predictor</title>
+    <style>
+        body {
+            background-color: #f7f2e9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            color: #5e3c1d;
+        }
+
+        .upload-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        input[type="file"], input[type="submit"] {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #a9744f;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #8b5e3c;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+         .spinner {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .spinner div {
+            width: 12px;
+            height: 12px;
+            margin: 3px;
+            background: #a9744f;
+            border-radius: 100%;
+            display: inline-block;
+            animation: bouncedelay 1.4s infinite ease-in-out both;
+        }
+
+        @keyframes bouncedelay {
+            0%, 80%, 100% {
+                transform: scale(0);
+            } 40% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-box">
+        <h2>☕ Coffee Shop Predictor</h2>
+        <form id="uploadForm" action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required><br>
+            <input type="submit" value="Upload and Analyze CSV">
+        </form>
+
+        <hr style="margin: 24px 0; border: none; border-top: 1px solid #e0d6c8;">
+
+        <form id="weekdayForm" action="/predict_weekday" method="post">
+            <label for="weekday">Predict cups sold for weekday (0=Mon .. 6=Sun):</label><br>
+            <input type="number" id="weekday" name="weekday" min="0" max="6" required>
+            <input type="submit" value="Predict Weekday Sales">
+        </form>
+
+        <div class="spinner" id="spinner">
+            <div></div><div></div><div></div>
+        </div>
+
+        <div class="footer">Upload CSV for coffee-type insights, or predict by weekday.</div>
+    </div>
+
+    <script>
+        const spinner = document.getElementById("spinner");
+        document.getElementById("uploadForm").addEventListener("submit", function () {
+            spinner.style.display = "inline-block";
+        });
+        document.getElementById("weekdayForm").addEventListener("submit", function () {
+            spinner.style.display = "inline-block";
+        });
+    </script>
+</body>
+</html>
