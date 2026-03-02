@@ -40,10 +40,10 @@
 </head>
 <body>
     <div class="result-box">
-        <h2>✅ Prediction Completed</h2>
+        <h2>Prediction Completed</h2>
         <p><strong>Prediction:</strong> {{ prediction }}</p>
 
-        <h3>📄 Uploaded Data:</h3>
+        <h3>Uploaded Data:</h3>
         <table>
             <thead>
                 <tr>
@@ -62,7 +62,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        <h3>📊 Coffee Sales Chart:</h3>
+        <h3>Coffee Sales Chart:</h3>
 <img src="{{ url_for('static', filename='sales_chart.png') }}" alt="Coffee Sales Chart" style="max-width: 600px;">
 
     </div>
